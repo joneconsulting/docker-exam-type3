@@ -12,7 +12,7 @@ services:
       - my-service
 
   my-backend:
-    image: edowon0623/docker-exam-spring:1.0
+    image: edowon0623/docker-exam-spring-mariadb:1.0
     environment: 
       - spring.datasource.url=jdbc:mariadb://my-db:3306/mydb
       - spring.datasource.password=

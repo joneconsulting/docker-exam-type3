@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  my-db:
+    platform: linux/amd64 # for apple chip
+    image: mariadb:latest
+    environment: 
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
+      - MARIADB_DATABASE=mydb
+    ports:
+      - 3306:3306
+    networks:
+      - my-service
+
+  my-backend:
+    image: edowon0623/docker-exam-spring:1.0
+    environment: 
+      - spring.datasource.url=jdbc:mariadb://my-db:3306/mydb
+      - spring.datasource.password=
+    ports:
+      - 8080:8080
+    depends_on:
+      - my-db
+
+networks:
+  my-service:
+    external: true
+      
